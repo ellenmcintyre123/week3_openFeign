@@ -1,5 +1,6 @@
 package atu.ie.week3_openfeign;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,16 +22,16 @@ public class ProductController {
         return productService.getAllProducts();
     }
     @PostMapping("/postDetails")
-    public Product addProduct(@RequestBody Product product) {
+    public Product addProduct(@Valid @RequestBody Product product) {
         return productService.addProduct(product);
     }
 
     @PutMapping("/update/{id}")
-    public Product updateProduct(@PathVariable long id,@RequestBody Product product) {
+    public Product updateProduct(@Valid  @PathVariable long id, @RequestBody Product product) {
         return productService.updateProduct(id, product);
     }
     @DeleteMapping("/delete/{id}")
-    public void deleteProduct(@PathVariable long id) {
+    public void deleteProduct(@Valid @PathVariable long id) {
         productService.deleteProduct(id);
     }
 }
